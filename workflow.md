@@ -9,7 +9,8 @@ flowchart TB
 
     
 
-    subgraph "AI Senior Developer Agent (Orchestrator)" 
+    subgraph "AI Senior Developer Agent" 
+
  
         direction TB
 
@@ -26,21 +27,21 @@ flowchart TB
         DevLoop -->|Backend Tasks| BackendService
 
         %% ────────────── Services ──────────────
-        subgraph FrontendService["Frontend Development Service"]
+        subgraph FrontendService["Frontend Development"]
             FE["Angular Development  
             • Components  
             • Services  
             • UI/UX Implementation"]
         end
 
-        subgraph BackendService["Backend Development Service"]
+        subgraph BackendService["Backend Development"]
             BE["Django REST API Development  
             • Models & Serializers  
             • Views & Serializers  
             • Authentication & Permissions"]
         end
 
-        subgraph DatabaseService["Database Design Service"]
+        subgraph DatabaseService["Database Design"]
             DBDesign["PostgreSQL  
             • Schema Design  
             • Migrations"]
