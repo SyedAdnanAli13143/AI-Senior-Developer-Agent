@@ -1,64 +1,90 @@
-flowchart TB
-    Start([Start])
+# AI Senior Developer Agent  
+## Full-Stack Development Workflow (Angular + Django + PostgreSQL)
 
-    Start --> TaskInput["Product / Feature Request"]
+```mermaid
+flowchart TB
+    Start([Start]) --> TaskInput[Product / Feature Request]
 
     TaskInput --> Orchestrator
 
-    subgraph Orchestrator["AI Senior Developer Agent (Orchestrator)"]
+    
+
+    subgraph "AI Senior Developer Agent (Orchestrator)" 
+ 
         direction TB
 
-        AgentStart(("[Agent Execution Begins]"))
+        AgentStart["✦ Agent Execution Begins ✦"] --> RequirementAnalysis
 
-        AgentStart --> RequirementAnalysis
-        RequirementAnalysis["Requirement Analysis<br/>(Understand scope & constraints)"]
+        RequirementAnalysis["Requirement Analysis  
+        Understand scope & constraints"] --> ArchitectureDesign
 
-        RequirementAnalysis --> ArchitectureDesign
-        ArchitectureDesign["System Architecture & Tech Decisions"]
+        ArchitectureDesign["System Architecture  
+        & Technology Decisions"] --> DevLoop{"Development Tasks"}
 
-        ArchitectureDesign --> DevLoop{"Development Tasks"}
+        %% ────────────── Task Distribution ──────────────
+        DevLoop -->|Frontend Tasks| FrontendService
+        DevLoop -->|Backend Tasks| BackendService
 
+        %% ────────────── Services ──────────────
         subgraph FrontendService["Frontend Development Service"]
-            FE["Angular Development<br/>(Components, Services, UI)"]
+            FE["Angular Development  
+            • Components  
+            • Services  
+            • UI/UX Implementation"]
         end
 
         subgraph BackendService["Backend Development Service"]
-            BE["Django REST API Development<br/>(Models, APIs, Auth)"]
+            BE["Django REST API Development  
+            • Models & Serializers  
+            • Views & Serializers  
+            • Authentication & Permissions"]
         end
 
         subgraph DatabaseService["Database Design Service"]
-            DBDesign["PostgreSQL Schema & Migrations"]
+            DBDesign["PostgreSQL  
+            • Schema Design  
+            • Migrations"]
         end
 
-        DevLoop --> |"Frontend Tasks"| FE
-        DevLoop --> |"Backend Tasks"| BE
-        BE --> DBDesign
-
+        %% ────────────── Dependencies ──────────────
+        BackendService --> DBDesign
         FE --> Review
         BE --> Review
+        DBDesign --> Review
 
+        %% ────────────── Quality Gate ──────────────
         subgraph ReviewService["Senior Code Review Service"]
-            Review["Code Review & Refactoring"]
-            Review --> Testing["Testing & Validation"]
+            Review["Code Review  
+            & Refactoring"] --> Testing["Testing & Validation"]
         end
 
         Testing --> DeployStep
 
+        %% ────────────── Deployment ──────────────
         subgraph DeploymentService["Deployment Service"]
-            DeployStep["Dockerization & Environment Setup"]
-            DeployStep --> Deployment["Production Deployment"]
+            DeployStep["Dockerization  
+            & Environment Setup"] --> Deployment["Production Deployment"]
         end
 
-        Deployment --> AgentEnd(("[Agent Execution Complete]"))
+        Deployment --> AgentEnd["✦ Agent Execution Complete ✦"]
     end
 
-    Orchestrator --> Output["Production-Ready Full-Stack Application"]
+    Orchestrator --> Output[Production-Ready  
+    Full-Stack Application]
+
     Output --> End([End])
 
+    %% ──────────────────────────────────────────────
     %% Styling
-    style Orchestrator fill:#fffade,stroke:#d09d00,stroke-width:2px
-    style FrontendService fill:#e1f5ff
-    style BackendService fill:#e1f5ff
-    style DatabaseService fill:#e8f5e9
-    style ReviewService fill:#f3f3f3
-    style DeploymentService fill:#f7e1ff
+    style Orchestrator fill:#fffade,stroke:#d09d00,stroke-width:3px
+    style FrontendService fill:#e1f5ff,stroke:#84b7ff
+    style BackendService fill:#e1f5ff,stroke:#84b7ff
+    style DatabaseService fill:#e8f5e9,stroke:#7ed957
+    style ReviewService fill:#f3f3f3,stroke:#999
+    style DeploymentService fill:#f7e1ff,stroke:#c084fc
+
+    style Start fill:#d4edda,stroke:#28a745
+    style End fill:#d4edda,stroke:#28a745
+    style Output fill:#fff3cd,stroke:#ffc107,stroke-width:2.5px
+    style AgentStart fill:#ffebee,stroke:#c62828
+    style AgentEnd fill:#e8f5e9,stroke:#2e7d32
